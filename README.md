@@ -1,5 +1,7 @@
 # Hugo Card Theme
 
+## forked from the popular hugo book theme
+
 [![Hugo](https://img.shields.io/badge/hugo-0.146-blue.svg)](https://gohugo.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Build with Hugo](https://github.com/alex-shpak/hugo-book/workflows/Build%20with%20Hugo/badge.svg)
@@ -39,6 +41,7 @@
 ## Installation
 
 ### Install as git submodule
+
 Navigate to your hugo project root and run:
 
 ```
@@ -56,6 +59,7 @@ hugo server --minify --theme hugo-book
 You can also add this theme as a Hugo module instead of a git submodule.
 
 Start with initializing hugo modules, if not done yet:
+
 ```
 hugo mod init github.com/repo/path
 ```
@@ -278,6 +282,7 @@ There are a few hugo templates inserted in `<head>`
 
 To disable Open Graph inclusion you can create your own empty file `/layouts/partials/opengraph.html`.
 In fact almost empty not quite empty because an empty file looks like absent for HUGO. For example:
+
 ```
 <!-- -->
 ```
