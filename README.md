@@ -1,4 +1,4 @@
-# Hugo Book Theme
+# Hugo Card Theme
 
 [![Hugo](https://img.shields.io/badge/hugo-0.146-blue.svg)](https://gohugo.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -6,7 +6,7 @@
 
 ### [Hugo](https://gohugo.io) documentation theme as simple as plain book
 
-![Screenshot](https://raw.githubusercontent.com/alex-shpak/hugo-book/main/images/screenshot.png)
+![Screenshot](images/screenshot.png)
 
 - [Features](#features)
 - [Requirements](#requirements)
