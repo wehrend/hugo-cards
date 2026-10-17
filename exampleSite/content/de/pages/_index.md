@@ -1,0 +1,4 @@
+---
+title: "Kurse"
+bookFlatSection: true
+---
