@@ -1,5 +1,3 @@
-# Hugo Card Theme
-
 # Hugo Cards
 
 A course and documentation theme for [Hugo](https://gohugo.io), forked from
@@ -17,19 +15,11 @@ A course and documentation theme for [Hugo](https://gohugo.io), forked from
   and on cards.
 - **Configurable home text**: title and intro come from `content/<lang>/_index.md`.
 
-## Installation
-
-    git submodule add https://github.com/wehrend/hugo-cards themes/hugo-cards
-
-and set `theme = "hugo-cards"`. As a Hugo Module, use `path = "github.com/wehrend/hugo-cards"`.
+**Demo:** [wehrend.github.io](https://wehrend.github.io/) (a site built with Hugo Cards)
 
 ## Try the example site
 
     cd exampleSite && hugo server --themesDir ../..
-
-### [Hugo](https://gohugo.io) documentation theme as simple as plain book
-
-![Screenshot](images/screenshot.png)
 
 - [Features](#features)
 - [Requirements](#requirements)
@@ -66,13 +56,13 @@ and set `theme = "hugo-cards"`. As a Hugo Module, use `path = "github.com/wehren
 Navigate to your hugo project root and run:
 
 ```
-git submodule add https://github.com/alex-shpak/hugo-book themes/hugo-book
+git submodule add https://github.com/wehrend/hugo-cards themes/hugo-cards
 ```
 
-Then run hugo (or set `theme = "hugo-book"`/`theme: hugo-book` in configuration file)
+Then run hugo (or set `theme = "hugo-cards"`/`theme: hugo-cards` in configuration file)
 
 ```
-hugo server --minify --theme hugo-book
+hugo server --minify --theme hugo-cards
 ```
 
 ### Install as hugo module
@@ -90,7 +80,7 @@ Navigate to your hugo project root and add [module] section to your `hugo.toml`:
 ```toml
 [module]
 [[module.imports]]
-path = 'github.com/alex-shpak/hugo-book'
+path = 'github.com/wehrend/hugo-cards'
 ```
 
 Then, to load/update the theme module and run hugo:
@@ -107,12 +97,12 @@ Below is an example on how to create a new site from scratch:
 ```sh
 hugo new site mydocs; cd mydocs
 git init
-git submodule add https://github.com/alex-shpak/hugo-book themes/hugo-book
-cp -R themes/hugo-book/exampleSite/content.en/* ./content
+git submodule add https://github.com/wehrend/hugo-cards themes/hugo-cards
+cp -R themes/hugo-cards/exampleSite/content/en/* ./content
 ```
 
 ```sh
-hugo server --minify --theme hugo-book
+hugo server --minify --theme hugo-cards
 ```
 
 ## Menu
@@ -130,7 +120,7 @@ A blog is not the primary usecase of this theme, so it has only minimal features
 ### Site Configuration
 
 There are a few configuration options that you can add to your `hugo.toml` file.  
-You can also see the `yaml` example [here](https://github.com/alex-shpak/hugo-book/blob/main/exampleSite/hugo.yaml).
+You can also see the `yaml` example [here](https://github.com/alex-shpak/hugo-book/blob/main/exampleSite/hugo.yaml) (Hugo Book).
 
 ```toml
 # (Optional) Set Google Analytics if you use it to track your website.
@@ -177,12 +167,12 @@ disableKinds = ['taxonomy', 'taxonomyTerm']
   # (Optional, default none) Set template for commit link for the page. Requires enableGitInfo.
   # When set enabled 'Last Modified' and a link to the commit in the footer of the page.
   # Param is executed as template using .Site, .Page and .GitInfo as context.
-  BookLastChangeLink = 'https://github.com/alex-shpak/hugo-book/commit/{{ .GitInfo.Hash }}'
+  BookLastChangeLink = 'https://github.com/wehrend/hugo-cards/commit/{{ .GitInfo.Hash }}'
 
   # (Optional, default none) Set template for edit page link.
   # When set enabled 'Edit this page' link in the footer of the page.
   # Param is executed as template using .Site, .Page and .Path as context.
-  BookEditLink = 'https://github.com/alex-shpak/hugo-book/edit/main/exampleSite/{{ .Path }}'
+  BookEditLink = 'https://github.com/wehrend/hugo-cards/edit/main/exampleSite/{{ .Path }}'
 
   # (Optional, default 'January 2, 2006') Configure the date format used on the pages
   # - In git information
@@ -310,6 +300,8 @@ In fact almost empty not quite empty because an empty file looks like absent for
 
 ## Shortcodes
 
+The shortcodes are inherited from Hugo Book; their documentation lives in the Hugo Book demo:
+
 - [Buttons](https://hugo-book-demo.netlify.app/docs/shortcodes/buttons/)
 - [Columns](https://hugo-book-demo.netlify.app/docs/shortcodes/columns/)
 - [Details](https://hugo-book-demo.netlify.app/docs/shortcodes/details/)
@@ -336,7 +328,9 @@ If you want lower maintenance, use one of the released versions. If you want to 
 
 ## Contributing
 
-### [Extra credits to contributors](https://github.com/alex-shpak/hugo-book/graphs/contributors)
+### Credits
+
+Based on [Hugo Book](https://github.com/alex-shpak/hugo-book) by Alex Shpak and its [contributors](https://github.com/alex-shpak/hugo-book/graphs/contributors).
 
 Contributions are welcome and I will review and consider pull requests.  
 Primary goals are:
