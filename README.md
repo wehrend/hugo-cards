@@ -1,10 +1,31 @@
 # Hugo Card Theme
 
-## forked from the popular hugo book theme
+# Hugo Cards
 
-[![Hugo](https://img.shields.io/badge/hugo-0.146-blue.svg)](https://gohugo.io)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-![Build with Hugo](https://github.com/alex-shpak/hugo-book/workflows/Build%20with%20Hugo/badge.svg)
+A course and documentation theme for [Hugo](https://gohugo.io), forked from
+[Hugo Book](https://github.com/alex-shpak/hugo-book) by Alex Shpak.
+
+![Screenshot](https://raw.githubusercontent.com/wehrend/hugo-cards/main/images/screenshot.png)
+
+## What's different from Hugo Book
+
+- **Card-grid home page**: every page or section with `overview: true` appears as a card,
+  with its SVG `icon` and `summary`.
+- **Course overview pages**: an overview page with `category: "x"` automatically lists all
+  pages of that category as numbered lesson cards.
+- **Page icons**: `icon: "svg/foo.svg"` (from `assets/`) is rendered inline in the page header
+  and on cards.
+- **Configurable home text**: title and intro come from `content/<lang>/_index.md`.
+
+## Installation
+
+    git submodule add https://github.com/wehrend/hugo-cards themes/hugo-cards
+
+and set `theme = "hugo-cards"`. As a Hugo Module, use `path = "github.com/wehrend/hugo-cards"`.
+
+## Try the example site
+
+    cd exampleSite && hugo server --themesDir ../..
 
 ### [Hugo](https://gohugo.io) documentation theme as simple as plain book
 
