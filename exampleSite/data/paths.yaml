@@ -1,0 +1,22 @@
+# Learning paths shown on the home page (see README → Learning paths).
+# A step is a page path, or a list of page paths shown side by side.
+# Pages missing in a language (drafts, untranslated) are skipped.
+
+- id: electronics
+  title: { en: "Electronics to embedded", de: "Von der Elektronik zu Embedded" }
+  goal:
+    en: "From voltage and current to how a CPU reacts to the outside world"
+    de: "Von Spannung und Strom bis dazu, wie eine CPU auf die Außenwelt reagiert"
+  steps:
+    - /pages/electronics-100
+    - /pages/adc-dac
+    - /pages/interrupts
+
+- id: audio
+  title: { en: "Building an audio synth", de: "Einen Audio-Synthesizer bauen" }
+  goal:
+    en: "Combine electronics basics with C++ to make sound"
+    de: "Elektronik-Grundlagen und C++ verbinden, um Klang zu erzeugen"
+  steps:
+    - /pages/electronics-100
+    - [/pages/adc-dac, /pages/cpp-00]

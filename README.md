@@ -14,6 +14,8 @@ A course and documentation theme for [Hugo](https://gohugo.io), forked from
 - **Page icons**: `icon: "svg/foo.svg"` (from `assets/`) is rendered inline in the page header
   and on cards.
 - **Configurable home text**: title and intro come from `content/<lang>/_index.md`.
+- **Learning paths**: ordered, collapsible paths through your courses, defined in
+  `data/paths.yaml`, with optional per-reader progress tracking. See [Learning paths](#learning-paths).
 
 **Demo:** [wehrend.github.io](https://wehrend.github.io/) (a site built with Hugo Cards)
 
@@ -267,6 +269,59 @@ bookHref = ''
 # (Optional) Set an icon for the menu entity of the page, icons are discovered from `assets/icons` folder.
 bookIcon = 'calendar'
 ```
+
+### Learning paths
+
+Learning paths guide readers through several courses in a fixed order. They are rendered on the home
+page as collapsible cards: a path opens into a numbered step timeline, each course opens into its
+lesson list. No JavaScript is needed for this part.
+
+Define them in `data/paths.yaml`:
+
+```yaml
+- id: electronics                     # used for the anchor #path-electronics
+  title: { en: "Electronics to embedded", de: "Von der Elektronik zu Embedded" }
+  goal:  { en: "From voltage to interrupts", de: "Von der Spannung bis zu Interrupts" }
+  open: false                         # optional: render expanded
+  steps:
+    - /pages/electronics-100          # one course per step …
+    - [/pages/adc-dac, /pages/cpp-00] # … or several, shown side by side
+    - /pages/interrupts
+```
+
+- `title` and `goal` can be plain strings (single-language sites) or maps keyed by language code.
+  Missing languages fall back to the default content language, then `en`.
+- Steps are page paths as used by `site.GetPage`. Pages that do not exist in the current language
+  (drafts, missing translations, typos) are skipped; numbering and course counts adjust.
+- A course with `category` lists all pages of that category as lessons (the same rule as course
+  overview pages). A page without `category` counts as a single-page course.
+
+Embed paths anywhere in content with the shortcode:
+
+```
+{{</* learning-paths */>}}
+{{</* learning-paths id="electronics" open=true */>}}
+```
+
+or in templates with `{{ partial "cards/learning-paths.html" (dict "id" "electronics") }}`.
+
+**Progress tracking.** Lessons get a "Mark as done" button; path and course cards then show
+`3/8` or `✓`. Progress is stored in the reader's browser (`localStorage`, key `hugo-cards-progress`),
+never sent anywhere, and shared between languages (lessons are identified by Hugo's
+`.TranslationKey`, so set a common `translationKey` if translated pages live under different paths).
+
+Configuration (all optional):
+
+```toml
+[params.learningPaths]
+  data = "paths"     # name of the data file in data/
+  home = true        # render paths on the home page
+  progress = true    # "Mark as done" buttons and progress badges
+```
+
+Styles live in `assets/_learning-paths.scss`; override them in `assets/_custom.scss`.
+Labels are translated via `i18n/` (`learningPathCourses`, `learningPathOpenCourse`,
+`learningPathMarkDone`, `learningPathDone`).
 
 ### Partials
 
