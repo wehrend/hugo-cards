@@ -1,0 +1,14 @@
+{{- /*
+  Returns the lessons of a course page: all regular pages sharing its
+  `category`, without the course page itself, sorted by file path
+  (same rule as the course overview cards). Empty for pages without category.
+*/ -}}
+{{- $course := . -}}
+{{- $lessons := slice -}}
+{{- with $course.Params.category -}}
+  {{- range where site.RegularPages "Params.category" . -}}
+    {{- if ne .RelPermalink $course.RelPermalink }}{{ $lessons = $lessons | append . }}{{ end -}}
+  {{- end -}}
+  {{- $lessons = sort $lessons "File.Path" "asc" -}}
+{{- end -}}
+{{- return $lessons -}}

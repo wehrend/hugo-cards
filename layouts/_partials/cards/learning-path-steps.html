@@ -1,0 +1,18 @@
+{{- /*
+  Resolves the steps of one learning path.
+  Context: the "steps" list from the data file. Each entry is a page path
+  or a list of page paths (courses shown side by side).
+  Returns a slice of steps; each step is a dict with "pages" (non-empty).
+  (Wrapped in a dict because Hugo's append flattens/rejects slices of pages.)
+  Pages that do not exist in the current language (drafts, missing
+  translations, typos) are skipped, so numbering and counts stay correct.
+*/ -}}
+{{- $steps := slice -}}
+{{- range . -}}
+  {{- $pages := slice -}}
+  {{- range (cond (reflect.IsSlice .) . (slice .)) -}}
+    {{- with site.GetPage . }}{{ $pages = $pages | append . }}{{ end -}}
+  {{- end -}}
+  {{- with $pages }}{{ $steps = $steps | append (dict "pages" .) }}{{ end -}}
+{{- end -}}
+{{- return $steps -}}

@@ -1,0 +1,6 @@
+{{- /*
+  Embeds learning paths in page content.
+    {{< learning-paths >}}                       all paths
+    {{< learning-paths id="hardware" open=true >}} one path, expanded
+*/ -}}
+{{- partial "cards/learning-paths.html" (dict "id" (.Get "id") "open" (eq (.Get "open") true "true")) -}}

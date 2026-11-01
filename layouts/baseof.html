@@ -17,6 +17,7 @@
 
       {{ partial "docs/inject/content-before" . }}
       {{ template "main" . }} <!-- Page Content -->
+      {{ partial "cards/lesson-progress" . }}
       {{ partial "docs/inject/content-after" . }}
 
       <footer class="book-footer">
@@ -33,6 +34,7 @@
     {{ template "toc-container" . }} <!-- Table of Contents -->
   </main>
 
+  {{ partial "cards/learning-paths-script" . }}
   {{ partial "docs/inject/body" . }}
 </body>
 </html>

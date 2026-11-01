@@ -1,0 +1,26 @@
+{{- /*
+  "Mark as done" button at the end of a lesson. Rendered only when learning
+  paths exist and params.learningPaths.progress is not false, on
+  - lessons (pages with `category`, not `overview`), and
+  - single-page courses (no `category`) that appear in a learning path.
+  The button stays hidden until learning-paths.js has loaded.
+*/ -}}
+{{- $cfg := site.Params.learningpaths | default dict -}}
+{{- $paths := partial "cards/learning-path-data.html" . -}}
+{{- if and .IsPage $paths (ne $cfg.progress false) -}}
+  {{- $page := . -}}
+  {{- $show := and .Params.category (not .Params.overview) -}}
+  {{- if and (not $show) (not .Params.category) -}}
+    {{- range $paths }}{{ range (partial "cards/learning-path-steps.html" .steps) }}{{ range .pages -}}
+      {{- if eq .RelPermalink $page.RelPermalink }}{{ $show = true }}{{ end -}}
+    {{- end }}{{ end }}{{ end -}}
+  {{- end -}}
+  {{- if $show }}
+<div class="lesson-progress">
+  <button type="button" class="lesson-done" hidden aria-pressed="false"
+    data-lesson="{{ .TranslationKey }}"
+    data-label-open="{{ i18n "learningPathMarkDone" }}"
+    data-label-done="✓ {{ i18n "learningPathDone" }}"></button>
+</div>
+  {{- end -}}
+{{- end -}}

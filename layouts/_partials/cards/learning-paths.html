@@ -1,0 +1,84 @@
+{{- /*
+  Renders learning paths as collapsible cards.
+
+  Data:    data/paths.yaml (file name configurable via params.learningPaths.data)
+  Context: optional dict
+             "id"   – render only the path with this id
+             "open" – render the path(s) expanded
+  Usage:   {{ partial "cards/learning-paths.html" (dict "id" "hardware") }}
+  Renders nothing if no data file exists.
+*/ -}}
+{{- $opts := cond (reflect.IsMap .) . dict -}}
+{{- $paths := partial "cards/learning-path-data.html" . -}}
+{{- if and $paths $opts.id }}{{ $paths = where $paths "id" $opts.id }}{{ end -}}
+
+{{- with $paths }}
+<div class="learning-paths">
+  {{- range . }}
+  {{- $steps := partial "cards/learning-path-steps.html" .steps }}
+  {{- if $steps }}
+
+    {{- /* count courses and collect all lesson ids of the path */}}
+    {{- $count := 0 }}
+    {{- $pathIds := slice }}
+    {{- range $steps }}{{ range .pages }}
+      {{- $count = add $count 1 }}
+      {{- $lessons := partial "cards/learning-path-lessons.html" . }}
+      {{- range (cond (gt (len $lessons) 0) $lessons (slice .)) }}{{ $pathIds = $pathIds | append .TranslationKey }}{{ end }}
+    {{- end }}{{ end }}
+
+  <details class="book-card learning-path"
+    {{- with .id }} id="path-{{ . | urlize }}"{{ end }}
+    {{- if or $opts.open .open }} open{{ end }}
+    data-lessons="{{ $pathIds | uniq | jsonify }}">
+    <summary>
+      <span class="book-card__title">{{ partial "cards/l10n.html" .title }}</span>
+      {{- with partial "cards/l10n.html" .goal }}
+      <span class="book-card__summary">{{ . }}</span>
+      {{- end }}
+      <span class="book-card__meta">{{ i18n "learningPathCourses" $count }} <span class="path-progress"></span></span>
+    </summary>
+
+    <ol class="learning-path__steps">
+      {{- range $i, $step := $steps }}
+      <li class="learning-path__step">
+        <span class="learning-path__num">{{ add $i 1 }}</span>
+        <div class="learning-path__courses">
+          {{- range $step.pages }}
+          {{- $course := . }}
+          {{- $lessons := partial "cards/learning-path-lessons.html" $course }}
+          {{- $ids := slice }}
+          {{- range (cond (gt (len $lessons) 0) $lessons (slice $course)) }}{{ $ids = $ids | append .TranslationKey }}{{ end }}
+
+          <details class="learning-path__course" data-lessons="{{ $ids | jsonify }}">
+            <summary>
+              {{- with $course.Params.icon }}{{ with resources.Get (trim . "/") }}
+              <span class="card-icon">{{ .Content | safeHTML }}</span>
+              {{- end }}{{ end }}
+              <span class="learning-path__course-title">{{ $course.LinkTitle }}</span>
+              <span class="path-progress"></span>
+            </summary>
+            <div class="learning-path__body">
+              {{- with $course.Params.summary }}
+              <p class="book-card__summary">{{ . }}</p>
+              {{- end }}
+              {{- with $lessons }}
+              <ol class="learning-path__lessons">
+                {{- range . }}
+                <li><a href="{{ .RelPermalink }}" data-lesson="{{ .TranslationKey }}">{{ .LinkTitle }}</a></li>
+                {{- end }}
+              </ol>
+              {{- end }}
+              <a class="learning-path__open" href="{{ $course.RelPermalink }}">{{ i18n "learningPathOpenCourse" }} →</a>
+            </div>
+          </details>
+          {{- end }}
+        </div>
+      </li>
+      {{- end }}
+    </ol>
+  </details>
+  {{- end }}
+  {{- end }}
+</div>
+{{- end }}

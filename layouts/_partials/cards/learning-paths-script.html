@@ -1,0 +1,7 @@
+{{- /* Loads the progress script when learning paths exist and progress is enabled. */ -}}
+{{- $cfg := site.Params.learningpaths | default dict -}}
+{{- if and (partial "cards/learning-path-data.html" .) (ne $cfg.progress false) -}}
+  {{- with resources.Get "learning-paths.js" | resources.Minify | resources.Fingerprint }}
+<script defer src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
+  {{- end -}}
+{{- end -}}
