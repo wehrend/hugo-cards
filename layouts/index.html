@@ -4,6 +4,11 @@
     <h1>{{ .Title }}</h1>
     <div class="markdown">{{ .Content }}</div>
 
+    {{/* Learning paths from data/paths.yaml (disable with params.learningPaths.home = false) */}}
+    {{ if ne (site.Params.learningpaths | default dict).home false }}
+        {{ partial "cards/learning-paths.html" . }}
+    {{ end }}
+
     {{/* --- helpers: get roots (language-aware) --- */}}
     {{ $pagesRoot := .Site.GetPage (printf "/%s/pages" .Site.Language.Lang) }}
     {{ if not $pagesRoot }}{{ $pagesRoot = .Site.GetPage "/pages" }}{{ end }}

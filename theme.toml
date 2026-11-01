@@ -1,11 +1,11 @@
 name = "Cards"
 license = "MIT"
 licenselink = "https://github.com/wehrend/hugo-cards/blob/main/LICENSE"
-description = "Course and documentation theme with a card-grid home page, numbered lesson cards and SVG page icons. Fork of Hugo Book."
+description = "Course and documentation theme with a card-grid home page, numbered lesson cards, learning paths and SVG page icons. Fork of Hugo Book."
 homepage = "https://github.com/wehrend/hugo-cards"
 demosite = "https://wehrend.github.io/"
 tags = ["documentation", "docs", "education", "cards", "responsive", "clean", "search", "multilingual"]
-features = ["card grid home page", "course overview pages", "SVG page icons", "search", "multilingual", "dark mode"]
+features = ["card grid home page", "course overview pages", "learning paths", "SVG page icons", "search", "multilingual", "dark mode"]
 min_version = "0.146.0"
 
 [author]

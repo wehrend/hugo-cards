@@ -1,0 +1,6 @@
+{{- /*
+  Returns the list of learning paths from the data file configured in
+  params.learningPaths.data (default: data/paths.yaml), or nil.
+*/ -}}
+{{- $cfg := site.Params.learningpaths | default dict -}}
+{{- return (index site.Data (default "paths" $cfg.data)) -}}

@@ -1,0 +1,15 @@
+{{- /*
+  Returns a localized string.
+  Context: either a plain string, or a map keyed by language code,
+  e.g. { en: "Hello", de: "Hallo" }.
+  Falls back to the default content language, then "en", then any value.
+*/ -}}
+{{- $v := . -}}
+{{- if reflect.IsMap $v -}}
+  {{- $s := index $v site.Language.Lang -}}
+  {{- if not $s }}{{ $s = index $v (site.Sites.Default.Language.Lang) }}{{ end -}}
+  {{- if not $s }}{{ $s = index $v "en" }}{{ end -}}
+  {{- if not $s }}{{ range $v }}{{ if not $s }}{{ $s = . }}{{ end }}{{ end }}{{ end -}}
+  {{- $v = $s -}}
+{{- end -}}
+{{- return (string (default "" $v)) -}}

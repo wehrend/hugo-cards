@@ -9,3 +9,17 @@
 
 - id: bookSearchConfig
   translation: '{ cache: true }'
+
+- id: learningPathCourses
+  translation:
+    one: "{{ .Count }} course"
+    other: "{{ .Count }} courses"
+
+- id: learningPathOpenCourse
+  translation: Open course
+
+- id: learningPathMarkDone
+  translation: Mark as done
+
+- id: learningPathDone
+  translation: Done
