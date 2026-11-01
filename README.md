@@ -202,6 +202,31 @@ disableKinds = ['taxonomy', 'taxonomyTerm']
   BookServiceWorker = true
 ```
 
+### Sitemap Configuration (addendum)
+
+To ensure Hugo generates a valid XML sitemap alongside an HTML sitemap view rather than unintended HTML dumps, configure the output formats in your `config.toml`:
+
+```toml
+[outputs]
+  home = ["HTML", "RSS", "SITEMAP", "sitemaphtml"]
+  section = ["HTML", "RSS", "SITEMAP"]
+  page = ["HTML", "RSS"]
+
+[outputFormats]
+  [outputFormats.SITEMAP]
+    mediaType = "application/xml"
+    baseName = "sitemap"
+    isPlainText = true
+    notAlternative = false
+  
+  [outputFormats.sitemaphtml]
+    name = "sitemaphtml"
+    mediaType = "text/html"
+    baseName = "/sitemap"
+    isPlainText = false
+    notAlternative = true
+    permalinkable = true
+
 ### Multi-Language Support
 
 Theme supports Hugo's [multilingual mode](https://gohugo.io/content-management/multilingual/), just follow configuration guide there. You can also tweak search indexing configuration per language in `i18n` folder.

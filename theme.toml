@@ -16,3 +16,13 @@ min_version = "0.146.0"
   author = "Alex Shpak"
   homepage = "https://github.com/alex-shpak"
   repo = "https://github.com/alex-shpak/hugo-book"
+  
+  [outputs]
+  home = ["HTML", "RSS", "SITEMAP"]
+
+[outputFormats]
+  [outputFormats.SITEMAP]
+    mediaType = "application/xml"
+    baseName = "sitemap"
+    isPlainText = true
+    notAlternative = false
