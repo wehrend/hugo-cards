@@ -48,8 +48,10 @@ A course and documentation theme for [Hugo](https://gohugo.io), forked from
 
 ## Requirements
 
-- Hugo 0.146 or higher
+- Hugo 0.158 or higher
 - Hugo extended version, [Installation Instructions](https://gohugo.io/installation/)
+- [Dart Sass](https://gohugo.io/functions/css/sass/#dart-sass) available as `sass` in your `PATH`
+  (LibSass is deprecated in Hugo; see `BookSassTranspiler` below if you still need it)
 
 ## Installation
 
@@ -202,6 +204,11 @@ disableKinds = ['taxonomy', 'taxonomyTerm']
   # /!\ This is an experimental feature, might be removed or changed at any time
   # (Optional, experimental, default false) Enables service worker that caches visited pages and resources for offline use.
   BookServiceWorker = true
+
+  # (Optional, default 'dartsass') Sass transpiler used for the theme stylesheet.
+  # Set to 'libsass' only if Dart Sass is not installed. LibSass is deprecated in Hugo
+  # and will be removed in a future release.
+  BookSassTranspiler = 'dartsass'
 ```
 
 ### Sitemap Configuration (addendum)

@@ -7,7 +7,7 @@
 {{- $v := . -}}
 {{- if reflect.IsMap $v -}}
   {{- $s := index $v site.Language.Lang -}}
-  {{- if not $s }}{{ $s = index $v (site.Sites.Default.Language.Lang) }}{{ end -}}
+  {{- if not $s }}{{ $s = index $v (hugo.Sites.Default.Language.Lang) }}{{ end -}}
   {{- if not $s }}{{ $s = index $v "en" }}{{ end -}}
   {{- if not $s }}{{ range $v }}{{ if not $s }}{{ $s = . }}{{ end }}{{ end }}{{ end -}}
   {{- $v = $s -}}

@@ -29,11 +29,16 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 0.146.7
+          hugo-version: 0.169.0
           extended: true
+      - name: Install Dart Sass
+        run: |
+          wget -q -O dart-sass.tar.gz https://github.com/sass/dart-sass/releases/download/1.89.2/dart-sass-1.89.2-linux-x64.tar.gz
+          tar -C "${RUNNER_TEMP}" -xzf dart-sass.tar.gz
+          echo "${RUNNER_TEMP}/dart-sass" >> "${GITHUB_PATH}"
       - name: Run Hugo
         working-directory: exampleSite
-        run: hugo --minify --themesDir ../.. --baseURL="https://book.alxs.dev/"
+        run: hugo --minify --themesDir ../.. --baseURL="https://wehrend.github.io/hugo-cards/"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

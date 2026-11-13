@@ -18,7 +18,7 @@ disablePathToLower = true
 
 [languages]
 [languages.en]
-  languageName = 'English'
+  label = 'English'
   contentDir = 'content/en'
   weight = 1
 
@@ -33,7 +33,7 @@ disablePathToLower = true
   weight = 20
 
 [languages.de]
-  languageName = 'Deutsch'
+  label = 'Deutsch'
   contentDir = 'content/de'
   weight = 2
 

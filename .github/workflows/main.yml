@@ -9,7 +9,7 @@ jobs:
       matrix:
         hugo-version:
           - 'latest'
-          - '0.146.7'
+          - '0.158.0'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -21,6 +21,12 @@ jobs:
         with:
           hugo-version: ${{ matrix.hugo-version }}
           extended: true
+
+      - name: Install Dart Sass
+        run: |
+          wget -q -O dart-sass.tar.gz https://github.com/sass/dart-sass/releases/download/1.89.2/dart-sass-1.89.2-linux-x64.tar.gz
+          tar -C "${RUNNER_TEMP}" -xzf dart-sass.tar.gz
+          echo "${RUNNER_TEMP}/dart-sass" >> "${GITHUB_PATH}"
 
       - name: Run Hugo
         working-directory: exampleSite
