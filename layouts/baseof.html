@@ -101,6 +101,9 @@
       {{ template "toc" . }}
     </div>
   </aside>
+  {{ else if and .Params.overview (not (eq .Site.Params.BookOverviewKeepWidth false)) }}
+  <!-- overview pages show no ToC, but keep its column so the content is as wide as on lesson pages -->
+  <aside class="book-toc" aria-hidden="true"></aside>
   {{ end }}
 {{ end }}
 

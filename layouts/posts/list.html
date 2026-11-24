@@ -31,7 +31,9 @@
 {{ end }}
 
 {{ define "toc" }}
+  {{ if not (eq .Site.Params.BookPostsTaxonomy false) }}
   {{ partial "docs/taxonomy" . }}
+  {{ end }}
 {{ end }}
 
 {{ define "footer" }}

@@ -156,6 +156,15 @@ disableKinds = ['taxonomy', 'taxonomyTerm']
   # You can also specify this parameter per page in front matter.
   BookToC = true
 
+  # (Optional, default true) Overview pages (overview = true) never show a ToC. By default they still keep
+  # the empty ToC column, so their content has the same width as on lesson pages.
+  # Set to false to let overview pages use the full width instead.
+  BookOverviewKeepWidth = true
+
+  # (Optional, default true) Show the list of all categories and tags on the right side of the blog post list.
+  # Set to false to hide it.
+  BookPostsTaxonomy = true
+
   # (Optional, default none) Set the path to a logo for the book. If the logo is
   # /static/logo.png then the path would be 'logo.png'
   BookLogo = 'logo.png'
@@ -262,6 +271,10 @@ bookHidden = false
 
 # (Optional) Set 'false' to hide ToC from page
 bookToC = true
+
+# (Optional) Mark the page as an overview page: it is shown as a card on the landing page,
+# lists the lessons of its category, and never shows a ToC
+overview = false
 
 # (Optional) If you have enabled BookComments for the site, you can disable it for specific pages.
 bookComments = true
